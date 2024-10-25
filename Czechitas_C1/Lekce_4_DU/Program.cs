@@ -16,10 +16,11 @@
 
                         Console.WriteLine("Zadej první číslo (a).");
 
-                        string inputOne = Console.ReadLine()                            bool isNumber = double.TryParse()
+                        string inputOne = Console.ReadLine();
+                        bool isNumber = double.TryParse();
 
 
-                            // definované proměnné pro první, druhé číslo a výsledek
+                        // definované proměnné pro první, druhé číslo a výsledek
 
                         double firstNumber;
                         double secondNumber;
