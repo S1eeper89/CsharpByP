@@ -46,6 +46,7 @@ namespace Lekce_5_DU
                         // definované proměnné pro první, druhé číslo a výsledek
 
                         double firstNumber;
+                        double secondNumber;
                         double vysledek;
 
                         Console.WriteLine($"(a) (operator) (b) = (c) ");
@@ -125,10 +126,8 @@ namespace Lekce_5_DU
 
                         //while (!correctParse || devideNull)
                         // Pokud je zadaná nula a operátor je dělení, program nedovolí dělení nulou
-                        {
                             if (doubleOperator)
                             {
-                                double secondNumber;
                                 bool isDoubleNumberTwo = double.TryParse(inputTwo, out double doubleSecondNumber);
                                 bool devideNull = (doubleSecondNumber == 0) && (firstOperator == "/");
                                 while (!isDoubleNumberTwo || devideNull)
@@ -152,7 +151,6 @@ namespace Lekce_5_DU
                             if (intOperator)
                             {
                                 bool isAbsoluteNumber = (intSecondNumber >= 0);
-                                int secondNumber;
                                 while (!isIntNumberTwo || !isAbsoluteNumber)
                                     
                                 {
@@ -171,20 +169,6 @@ namespace Lekce_5_DU
                                     secondNumber = intSecondNumber;
                                 }
                             }
-                            if (!isNumberTwo)
-                            {
-                                Console.WriteLine("Nezadal jsi číslo, zadej prosím druhé číslo (b).");
-                            }
-                            // Kontrola, zda se nejedná o dělení nulou
-                            else if (devideNull)
-                            {
-                                Console.WriteLine("Nulou nelze dělit, zadej prosím druhé číslo (b)");
-                            }
-                            inputTwo = Console.ReadLine();
-                            isNumberTwo = double.TryParse(inputTwo, out secondNumber);
-                            devideNull = (secondNumber == 0) && (firstOperator == "/");
-
-                        }
                         Console.WriteLine($"({firstNumber}) ({firstOperator}) ({secondNumber}) = (c) ");
 
                         // Výpočet na základě zadaného operátoru pomocí switch
@@ -211,8 +195,8 @@ namespace Lekce_5_DU
                                 Console.WriteLine($"Výsledek: {vysledek}");
                                 break;
                             case "^":
-                                vysledek = Umocni(firstNumber, secondNumber);
-                                Console.WriteLine($"{firstNumber} {firstOperator} {secondNumber} = {vysledek}");
+                                vysledek = Umocni(firstNumber, (int)secondNumber);
+                                Console.WriteLine($"{firstNumber} {firstOperator} {(int)secondNumber} = {vysledek}");
                                 Console.WriteLine($"Výsledek: {vysledek}");
                                 break;
                         }
