@@ -14,164 +14,78 @@ namespace Lekce_5_DU
     {
         static double Umocni(double mocnenec, int mocnitel)
         {
+            // metoda pro mocnění, řeší mocnění nulou, mocnění celými zápornými číli a mocnění celými kladnými čísli, neřeší neceločíslené mocnitele.
             if (mocnitel == 0)
             {
                 return 1;
             }
-            double mezikrok = 1;
-            for (int i = 1; i <= mocnitel; i++)
+            double vysledekUmocni = 1;
+            int absMocnitel = Math.Abs(mocnitel);
+            for (int i = 1; i <= absMocnitel; i++)
             {
-                mezikrok = mezikrok * mocnenec;
+                vysledekUmocni = vysledekUmocni * mocnenec;
             }
             if (mocnitel < 0)
             {
-                return 1 / mezikrok;
+                return 1 / vysledekUmocni;
             }
-            return mezikrok;
-
-
-        }
-
-
+            return vysledekUmocni;
+        }  
         static void Main(string[] args)
         {
             {
                 Console.WriteLine("Začátek programu");
-
+                bool ukoncitProgram = false!;
                 // cylus while pro iteraci celého procesu kalkulačky
-
-                while (true)
+                while (!ukoncitProgram)
                 {
                     {
-                        // definované proměnné pro první, druhé číslo a výsledek
-
-                        double firstNumber;
-                        double secondNumber;
-                        double vysledek;
-
                         Console.WriteLine($"(a) (operator) (b) = (c) ");
                         Console.WriteLine("Zadej první číslo (a).");
-
+                        double firstNumber;
                         string inputOne = Console.ReadLine();
-                        bool isNumberOne = double.TryParse(inputOne, out firstNumber);
-
                         // Cyklus while pro iteraci vstupu prvního čísla, dokud není zadáno platné číslo
-
-                        while (!isNumberOne)
+                        while (!double.TryParse(inputOne, out firstNumber))
                         {
                             Console.WriteLine("Nezadal jsi číslo, prosím zadej první číslo (a).");
                             inputOne = Console.ReadLine();
-                            isNumberOne = double.TryParse(inputOne, out firstNumber);
                         }
-
                         Console.WriteLine($"({firstNumber}) (operator) (b) = (c) ");
-
                         Console.WriteLine("Zadej operátor (+) (-) (*) (/) (^) ");
-
-
-                        //Console.WriteLine("Zadej Mocnence");
-                        //string vstupMocnenec = Console.ReadLine();
-                        //String.IsNullOrEmpty(vstupMocnenec);
-                        //isNumberOne = double.TryParse(vstupMocnenec, out double mocnenec);
-                        //bool notEmptyOne = String.IsNullOrEmpty(vstupMocnenec);
-                        //while (notEmptyOne || !isNumberOne)
-                        //{
-                        //    Console.WriteLine("Zadej Mocnence, cislo!");
-                        //    string vstup2 = Console.ReadLine();
-                        //    isNumberOne = double.TryParse(vstupMocnenec, out mocnenec);
-                        //    notEmptyOne = String.IsNullOrEmpty(vstupMocnenec);
-                        //}
-
-
-
-                        //Console.WriteLine("Zadej Mocnitele");
-                        //string vstupMocnitel = Console.ReadLine();
-                        //String.IsNullOrEmpty(vstupMocnitel);
-                        //bool isNumberTwo = double.TryParse(vstupMocnitel, out double mocnitel);
-                        //bool notEmptyTwo = String.IsNullOrEmpty(vstupMocnitel);
-                        //while (notEmptyTwo || !isNumberOne)
-                        //{
-                        //    Console.WriteLine("Zadej Mocnence, cislo!");
-                        //    string vstup2 = Console.ReadLine();
-                        //    isNumberOne = double.TryParse(vstupMocnitel, out mocnitel);
-                        //    notEmptyTwo = String.IsNullOrEmpty(vstupMocnitel);
-                        //}
-
-
                         // Cyklus while pro iteraci vstupu operátoru, dokud není zadán platný operátor 
                         string firstOperator = Console.ReadLine();
-                        bool isOperator = (firstOperator == "+" || firstOperator == "-" || firstOperator == "*" || firstOperator == "/" || firstOperator == "^");
-
-                        while (!isOperator)
+                        while (!(firstOperator == "+" || firstOperator == "-" || firstOperator == "*" || firstOperator == "/" || firstOperator == "^"))
                         {
                             Console.WriteLine($"Nezadal jsi správný operátor, zadej operátor (+) (-) (*) (/) ");
                             firstOperator = Console.ReadLine();
-                            // Kontrola platnosti operátoru (musí být +, -, *, nebo /)
-                            isOperator = (firstOperator == "+" || firstOperator == "-" || firstOperator == "*" || firstOperator == "/" || firstOperator == "^");
                         }
-
-                        // Pokud je operátor platný, pokračuje se zadáním druhého čísla
                         Console.WriteLine($"({firstNumber}) ({firstOperator}) (b) = (c) ");
                         Console.WriteLine("Zadej druhé číslo (b).");
-
-                        // Cyklus while pro iteraci vstupu druhého čísla, dokud není zadáno platné číslo
-
+                        // Pokud je operátor platný, pokračuje se zadáním druhého čísla
                         string inputTwo = Console.ReadLine();
-                        bool doubleOperator = (firstOperator == "+" || firstOperator == "-" || firstOperator == "*" || firstOperator == "/");
-                        bool intOperator = (firstOperator == "^");
-                        bool isIntNumberTwo = int.TryParse(inputTwo, out int intSecondNumber);
-
-                        //bool correctParse = ((doubleOperator && isDoubleNumberTwo) || (intOperator && isIntNumberTwo));
-                        //bool devideNull = (secondNumber == 0) && (firstOperator == "/");
-
-                        //while (!correctParse || devideNull)
-                        // Pokud je zadaná nula a operátor je dělení, program nedovolí dělení nulou
-                            if (doubleOperator)
+                        double secondNumber;
+                        // Cyklus while pro iteraci vstupu druhého čísla, dokud není zadáno platné číslo, ošetřené dělení nulou a mocnění neceločíselným mocnitelem
+                        while (!double.TryParse(inputTwo, out secondNumber) || (secondNumber == 0 && firstOperator == "/") || (firstOperator == "^" && secondNumber % 1 != 0))
+                        {
+                            // Kontrola, zda se nejedná o dělení nulou
+                            if ((secondNumber == 0 && firstOperator == "/"))
                             {
-                                bool isDoubleNumberTwo = double.TryParse(inputTwo, out double doubleSecondNumber);
-                                bool devideNull = (doubleSecondNumber == 0) && (firstOperator == "/");
-                                while (!isDoubleNumberTwo || devideNull)
-                                {
-                                    if (!isDoubleNumberTwo)
-                                    {
-                                        Console.WriteLine("Nezadal jsi číslo, zadej prosím druhé číslo (b).");
-                                    }
-                                    // Kontrola, zda se nejedná o dělení nulou
-                                    else if (devideNull)
-                                    {
-                                        Console.WriteLine("Nulou nelze dělit, zadej prosím druhé číslo (b)");
-                                    }
-                                    inputTwo = Console.ReadLine();
-                                    isDoubleNumberTwo = double.TryParse(inputTwo, out doubleSecondNumber);
-                                    devideNull = (doubleSecondNumber == 0) && (firstOperator == "/");
-                                    secondNumber = doubleSecondNumber;
-                                }
-
+                                Console.WriteLine("Nulou nelze dělit, zadej prosím druhé číslo (b)");
                             }
-                            if (intOperator)
+                            //Kontrola, zda se nejedná o mocnění zlomkem
+                            else if (firstOperator == "^" && secondNumber % 1 != 0)
                             {
-                                bool isAbsoluteNumber = (intSecondNumber >= 0);
-                                while (!isIntNumberTwo || !isAbsoluteNumber)
-                                    
-                                {
-                                    if (!isIntNumberTwo)
-                                    {
-                                        Console.WriteLine("Nezadal jsi číslo, zadej prosím druhé číslo (b).");
-                                    }
-                                    // Kontrola, zda se nejedná o dělení nulou
-                                    else if (isAbsoluteNumber)
-                                    {
-                                        Console.WriteLine("Nezadal jsi celé, kladné číslo, zadej prosím druhé číslo (b)");
-                                    }
-                                    inputTwo = Console.ReadLine();
-                                    isIntNumberTwo = int.TryParse(inputTwo, out intSecondNumber);
-                                    isAbsoluteNumber = (intSecondNumber >= 0);
-                                    secondNumber = intSecondNumber;
-                                }
+                                Console.WriteLine("Nezadal jsi celé číslo, zadej prosím druhé číslo (b)");
                             }
+                            else
+                            {
+                                Console.WriteLine("Nezadal jsi číslo, zadej prosím druhé číslo (b)");
+                            }
+                            inputTwo = Console.ReadLine();
+                        }
                         Console.WriteLine($"({firstNumber}) ({firstOperator}) ({secondNumber}) = (c) ");
-
-                        // Výpočet na základě zadaného operátoru pomocí switch
+                        // Výpočet na základě zadaného operátoru pomocí switch s operátory +, -, *, /, ^
+                        double vysledek;
                         switch (firstOperator)
                         {
                             case "+":
@@ -208,7 +122,7 @@ namespace Lekce_5_DU
                         if (dotazKonec == "ano")
                         {
                             Console.WriteLine("Konec Programu");
-                            return;
+                            ukoncitProgram = true;
                         }
                         // Pokud uživatel zadá cokoliv jiného než "ano", nezávisle na velikosti písmen, program se znovu spustí
                         // numerické metody pro výpočet ingerálů, obdelníková a lichoběžníková metoda
