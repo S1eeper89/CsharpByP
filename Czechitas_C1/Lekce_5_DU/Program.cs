@@ -19,17 +19,21 @@ namespace Lekce_5_DU
             {
                 return 1;
             }
-            double vysledekUmocni = 1;
-            int absMocnitel = Math.Abs(mocnitel);
-            for (int i = 1; i <= absMocnitel; i++)
+            else
             {
-                vysledekUmocni = vysledekUmocni * mocnenec;
-            }
-            if (mocnitel < 0)
-            {
-                return 1 / vysledekUmocni;
-            }
-            return vysledekUmocni;
+                double vysledekUmocni = 1;
+                int absMocnitel = Math.Abs(mocnitel);
+                for (int i = 1; i <= absMocnitel; i++)
+                    {
+                    vysledekUmocni = vysledekUmocni * mocnenec;
+                    }
+                if (mocnitel < 0)
+                {
+                    return 1 / vysledekUmocni;
+                }
+                return vysledekUmocni;
+            }    
+            
         }  
         static void Main(string[] args)
         {
