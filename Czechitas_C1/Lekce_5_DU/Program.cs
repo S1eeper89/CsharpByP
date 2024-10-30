@@ -1,14 +1,4 @@
-﻿
-//    Přidejte nový operátor mocnění(^). Pro operaci mocnění nepoužívejte funkci Math.Pow, ale napište si vlastní logiku.Stačí k tomu jeden for cyklus.Mocnění totiž není nic jiného než opakované násobení.
-
-//Například:
-//2^4=16 (dvě na čtvrtou) se dá rozepsat jako 2 * 2 * 2 * 2
-//3^3=27 se dá rozepsat jako 3 * 3 * 3 apod.
-//Předpokládejte, že mocnitel je celé kladné číslo.
-
-//Muzete mit metodu double Umocni(double mocnenec, int mocnitel){ //vas kod mocneni}
-
-namespace Lekce_5_DU
+﻿namespace Lekce_5_DU
 {
     internal class Program
     {
@@ -19,21 +9,17 @@ namespace Lekce_5_DU
             {
                 return 1;
             }
-            else
+            double vysledekUmocni = 1;
+            int absMocnitel = Math.Abs(mocnitel);
+            for (int i = 1; i <= absMocnitel; i++)
             {
-                double vysledekUmocni = 1;
-                int absMocnitel = Math.Abs(mocnitel);
-                for (int i = 1; i <= absMocnitel; i++)
-                    {
-                    vysledekUmocni = vysledekUmocni * mocnenec;
-                    }
-                if (mocnitel < 0)
-                {
-                    return 1 / vysledekUmocni;
-                }
-                return vysledekUmocni;
-            }    
-            
+                vysledekUmocni = vysledekUmocni * mocnenec;
+            }
+            if (mocnitel < 0)
+            {
+                return 1 / vysledekUmocni;
+            }
+            return vysledekUmocni;
         }  
         static void Main(string[] args)
         {
@@ -132,13 +118,6 @@ namespace Lekce_5_DU
                         // numerické metody pro výpočet ingerálů, obdelníková a lichoběžníková metoda
                     }
                 }
-
-
-
-
-
-
-
             }
         }
     }
