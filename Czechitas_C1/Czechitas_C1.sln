@@ -31,7 +31,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DU_Lekce_6_DomaciUkol", "Le
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DU_Lekce_6_DomaciUkol_test", "DU_Lekce_6_DomaciUkol_test\DU_Lekce_6_DomaciUkol_test.csproj", "{3899AFC5-7B14-47D4-8E4E-3DFD34DCDF0C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DU_Lekce_6_DomaciUkol_test_2", "DU_Lekce_6_DomaciUkol_test_2\DU_Lekce_6_DomaciUkol_test_2.csproj", "{C739612C-B4C6-4144-A346-BC218D3B5108}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DU_Lekce_6_DomaciUkol_vyreseny", "DU_Lekce_6_DomaciUkol_test_2\DU_Lekce_6_DomaciUkol_vyreseny.csproj", "{C739612C-B4C6-4144-A346-BC218D3B5108}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
