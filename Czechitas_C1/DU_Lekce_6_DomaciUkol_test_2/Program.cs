@@ -124,67 +124,14 @@
                     double firstNumber = zadejPrvniCislo();
                     Console.WriteLine($"({firstNumber}) (operator) (b) = (c) ");
                     Console.WriteLine("Zadej operátor (+) (-) (*) (/) (^) ");
-                    string firstOperator = Console.ReadLine();
-                    // cyklus pro iteraci prvního operátoru
-                    while (!(firstOperator == "+" || firstOperator == "-" || firstOperator == "*" || firstOperator == "/" || firstOperator == "^"))
-                    {
-                        Console.WriteLine($"Nezadal jsi správný operátor, zadej operátor (+) (-) (*) (/) ");
-                        firstOperator = Console.ReadLine();
-                    }
+                    //// cyklus pro iteraci prvního operátoru
+                    string firstOperator = zadejDalsiOperator();
                     Console.WriteLine($"({firstNumber}) ({firstOperator}) (b) = (c) ");
                     Console.WriteLine("Zadej druhé číslo (b).");
-                    string inputTwo = Console.ReadLine();
-                    double secondNumber;
                     // metoda pro iteraci druhého čísla s ohledem na vyjímy při dělení a mocenění
-                    while (!double.TryParse(inputTwo, out secondNumber) || (secondNumber == 0 && firstOperator == "/") || (firstOperator == "^" && secondNumber % 1 != 0))
-                    {
-                        // Kontrola, zda se nejedná o dělení nulou
-                        if ((secondNumber == 0 && firstOperator == "/"))
-                        {
-                            Console.WriteLine("Nulou nelze dělit, zadej prosím druhé číslo (b)");
-                        }
-                        //Kontrola, zda se nejedná o mocnění zlomkem
-                        else if (firstOperator == "^" && secondNumber % 1 != 0)
-                        {
-                            Console.WriteLine("Nezadal jsi celé číslo, zadej prosím druhé číslo (b)");
-                        }
-                        else
-                        {
-                            Console.WriteLine("Nezadal jsi číslo, zadej prosím druhé číslo (b)");
-                        }
-                        inputTwo = Console.ReadLine();
-                    }
-                    vysledek = 0;
-                    // výpočet přes switch
-                    switch (firstOperator)
-                    {
-                        case "+":
-                            vysledek = firstNumber + secondNumber;
-                            Console.WriteLine($"{firstNumber} {firstOperator} {secondNumber} = {vysledek}");
-                            Console.WriteLine($"Výsledek: {vysledek}");
-                            break;
-                        case "-":
-                            vysledek = firstNumber - secondNumber;
-                            Console.WriteLine($"{firstNumber} {firstOperator} {secondNumber} = {vysledek}");
-                            Console.WriteLine($"Výsledek: {vysledek}");
-                            break;
-                        case "*":
-                            vysledek = firstNumber * secondNumber;
-                            Console.WriteLine($"{firstNumber} {firstOperator} {secondNumber} = {vysledek}");
-                            Console.WriteLine($"Výsledek: {vysledek}");
-                            break;
-                        case "/":
-                            vysledek = firstNumber / secondNumber;
-                            Console.WriteLine($"{firstNumber} {firstOperator} {secondNumber} = {vysledek}");
-                            Console.WriteLine($"Výsledek: {vysledek}");
-                            break;
-                        case "^":
-                            vysledek = Umocni(firstNumber, (int)secondNumber);
-                            Console.WriteLine($"{firstNumber} {firstOperator} {(int)secondNumber} = {vysledek}");
-                            Console.WriteLine($"Výsledek: {vysledek}");
-                            break;
-                    }
-
+                    double.TryParse(zadejDalsiCislo(firstOperator), out double secondNumber);
+                    // Výpočet přes metodu Vypocti
+                    vysledek = Vypocti(firstOperator, firstNumber, secondNumber);
                     Console.WriteLine($"{firstNumber} {firstOperator} {secondNumber} = {vysledek}");
                     // while cyklus pro opakování dodatečných operátorů a čísel dokud uživatel nezadá x
                     while (true)
@@ -201,34 +148,7 @@
                             break;
                         }
                         double vypsaneDalsiCislo = vysledek;
-                        switch (dalsiOperator)
-                        {
-                            case "+":
-                                vysledek = vysledek + dalsiCislo;
-                                Console.WriteLine($"{vypsaneDalsiCislo} {dalsiOperator} {secondNumber} = {vysledek}");
-                                Console.WriteLine($"Výsledek: {vysledek}");
-                                break;
-                            case "-":
-                                vysledek = vysledek - dalsiCislo;
-                                Console.WriteLine($"{vypsaneDalsiCislo} {dalsiOperator} {secondNumber} = {vysledek}");
-                                Console.WriteLine($"Výsledek: {vysledek}");
-                                break;
-                            case "*":
-                                vysledek = vysledek * dalsiCislo;
-                                Console.WriteLine($"{vypsaneDalsiCislo} {dalsiOperator} {secondNumber} = {vysledek}");
-                                Console.WriteLine($"Výsledek: {vysledek}");
-                                break;
-                            case "/":
-                                vysledek = vysledek / dalsiCislo;
-                                Console.WriteLine($"{vypsaneDalsiCislo} {dalsiOperator} {secondNumber} = {vysledek}");
-                                Console.WriteLine($"Výsledek: {vysledek}");
-                                break;
-                            case "^":
-                                vysledek = Umocni(vysledek, (int)dalsiCislo);
-                                Console.WriteLine($"{vypsaneDalsiCislo} {dalsiOperator} {(int)secondNumber} = {vysledek}");
-                                Console.WriteLine($"Výsledek: {vysledek}");
-                                break;
-                        }
+                        Vypocti(dalsiOperator, vysledek, dalsiCislo);
                 }
 
                 Console.WriteLine("Chcete ukončit program? ano / ne");
