@@ -2,9 +2,9 @@
 {
     internal class Program
     {
+        // metoda pro mocnění, řeší mocnění nulou, mocnění celými zápornými číli a mocnění celými kladnými čísli, neřeší neceločíslené mocnitele.
         static double Umocni(double mocnenec, int mocnitel)
         {
-            // metoda pro mocnění, řeší mocnění nulou, mocnění celými zápornými číli a mocnění celými kladnými čísli, neřeší neceločíslené mocnitele.
             if (mocnitel == 0)
             {
                 return 1;
@@ -21,7 +21,7 @@
             }
             return vysledekUmocni;
         }
-
+        // metoda pro zadání prvního čísla
         static double zadejPrvniCislo()
         {
             double firstNumber;
@@ -33,6 +33,7 @@
             }
             return firstNumber;
         }
+        //metoda pro opakující se operátor s možností výstupu přes x
         static string zadejDalsiOperator()
         {
             Console.WriteLine("Zadej další operátor (+) (-) (*) (/) (^) nebo pro ukončení (x) ");
@@ -43,12 +44,9 @@
                 Console.WriteLine($"Nezadal jsi správný operátor, zadej operátor (+) (-) (*) (/) (x) ");
                 firstOperator = Console.ReadLine();
             }
-            //if (firstOperator.ToLower() == "x")
-            //{
-            //    return "x";
-            //}
             return firstOperator;
         }
+        // mtoda pro opakující se číslo s možností výstupu
         static string zadejDalsiCislo(string dalsiOperator)
         {
             Console.WriteLine("Zadej další číslo (b), pro ukončení zadej (x).");
@@ -74,6 +72,7 @@
             return inputTwo;
 
         }
+        // metoda pro výpočet prvního výpočtu
         static double Vypocti(string firstOperator, double firstNumber, double secondNumber)
         {
             double vysledek = 0;
@@ -118,32 +117,25 @@
 
             while (!ukoncitProgram)
             {
-                double vysledek;
-
-                //if (prvniIterace)
-                //{
+                    double vysledek;
                     Console.WriteLine($"(a) (operator) (b) = (c) ");
                     Console.WriteLine("Zadej první číslo (a).");
-
-
+                    //if (prvniIterace)
                     double firstNumber = zadejPrvniCislo();
-                    //prvniIterace = false;
-
                     Console.WriteLine($"({firstNumber}) (operator) (b) = (c) ");
                     Console.WriteLine("Zadej operátor (+) (-) (*) (/) (^) ");
-
                     string firstOperator = Console.ReadLine();
+                    // cyklus pro iteraci prvního operátoru
                     while (!(firstOperator == "+" || firstOperator == "-" || firstOperator == "*" || firstOperator == "/" || firstOperator == "^"))
                     {
                         Console.WriteLine($"Nezadal jsi správný operátor, zadej operátor (+) (-) (*) (/) ");
                         firstOperator = Console.ReadLine();
                     }
-
                     Console.WriteLine($"({firstNumber}) ({firstOperator}) (b) = (c) ");
                     Console.WriteLine("Zadej druhé číslo (b).");
-
                     string inputTwo = Console.ReadLine();
                     double secondNumber;
+                    // metoda pro iteraci druhého čísla s ohledem na vyjímy při dělení a mocenění
                     while (!double.TryParse(inputTwo, out secondNumber) || (secondNumber == 0 && firstOperator == "/") || (firstOperator == "^" && secondNumber % 1 != 0))
                     {
                         // Kontrola, zda se nejedná o dělení nulou
@@ -163,7 +155,7 @@
                         inputTwo = Console.ReadLine();
                     }
                     vysledek = 0;
-
+                    // výpočet přes switch
                     switch (firstOperator)
                     {
                         case "+":
@@ -194,11 +186,9 @@
                     }
 
                     Console.WriteLine($"{firstNumber} {firstOperator} {secondNumber} = {vysledek}");
-                    //return vysledek; // spatna cesta
-                //}
+                    // while cyklus pro opakování dodatečných operátorů a čísel dokud uživatel nezadá x
                     while (true)
                     {
-
                         string dalsiOperator = zadejDalsiOperator();
                         if (dalsiOperator == "x")
                         {
@@ -242,7 +232,7 @@
                 }
 
                 Console.WriteLine("Chcete ukončit program? ano / ne");
-
+                // po ukončení cyklu počítání s předchozím výsledkem se zeptá jestli chce uživatel ukončit program, nebo začít od začátku operací s prvními dvěmi čísly
                 if (Console.ReadLine()?.ToLower() == "ano")
                 {
                     Console.WriteLine("Konec Programu");
