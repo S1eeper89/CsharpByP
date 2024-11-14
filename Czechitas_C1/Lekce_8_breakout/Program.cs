@@ -14,8 +14,10 @@
             Console.WriteLine(Obdelnik.PocetObdelniku);
             int vysledekPocet = Obdelnik.PocetObdelniku;
             double vysledek = karel.vypocitejObsah();
-            Console.WriteLine(vysledek);
-            Console.WriteLine(vysledekPocet);
+            Console.WriteLine($"Vysledek primo jako objekt classy volajny jmenem objektu.metoda je {Ctverecinka.vypocitejObsah()}");
+            Console.WriteLine($"Vysledek v promenne je {vysledek}");
+            Console.WriteLine($"Pocet obdelniku je {vysledekPocet}");
+            Console.WriteLine($"Pocet ctvercu je {Obdelnik.PocetCtvercu}");
         }
     }
 }
