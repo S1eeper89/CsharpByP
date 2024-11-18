@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Reflection.Metadata;
 using System.Text;
@@ -12,7 +13,7 @@ namespace ProjektC_1
     //1. Vytvoř si nový konzolový projekt - budeme začínat na zelené louce
     //2. Zadefinuj třídu Kalkulacka
     //3. Třída Kalkulacka si musí umět pamatovat aktuální výsledek(vlastnost třídy Kalkulacka) - aktuální výsledek by měl být po vytvoření kalkulačky nulový a měl by být desetinného typu.
-    //4.  Zadefinuj a naimplementuj metodu JePlatnyOperator, která nám bude vracet True právě tehdy, když vstupní parametr této metody bude jeden z námi podporovaných operací(‘+’,’-’,’*’,’/’,’^’).
+
     //5. Zadefinuj a naimplementuj metody třídy(Pricti, Odecti, …) pro všechny podporované operace.
     //    Metody budou pracovat s jedním vstupním parametrem a upravovat aktuální výsledek kalkulačky.
     //6. Zadefinuj a naimplementuj metodu VratAktualniVysledek, která nám bude vracet aktuální výsledek kalkulačky.7. Zkontroluj si, že Kalkulacka nevolá Console (ani ReadLine, ani WriteLine).
@@ -46,13 +47,46 @@ namespace ProjektC_1
     //    // Výsledek by měl odpovídat očekávanému výstupu na základě použité operace.
     //    “tvůj kód zde”
     //    }
-    public class Logika
+    public class Kalkulacka
     {
-        public double umocni(double mocnenec, int mocnitel)
+        public double FirstInput;
+        public string Operator;
+        public double SecondInput;
+        public double Result;
+        public Kalkulacka(double firstNumberInput, string firstOperatorInput, double secondNumberInput, double result = 0)
         {
-            if (mocnitel == 0)
+            Result = result;
+            FirstInput = firstNumberInput;
+            Operator = firstOperatorInput;
+            SecondInput = secondNumberInput;
+        }
+        //4.  Zadefinuj a naimplementuj metodu JePlatnyOperator, která nám bude vracet True právě tehdy, když vstupní parametr této metody
+        //   bude jeden z námi podporovaných operací(‘+’,’-’,’*’,’/’,’^’).
+        string vstupOperator;
+        public bool JePlatnyOperator()
+        {
+            if (Operator == "+"|| Operator == "-"|| Operator == "*" || Operator == "/" || Operator == "^")
+            {
+                return true;
+            }
+            else return false;
+            
+        }
+        
+
+        public double Umocni()
+        {
+            double vysledek = 1;
+            if (SecondInput == 0)
                 return 1;
-            return 
+            
+            for (int i = 1; i <= (int)SecondInput; i++)
+                {
+                    vysledek = vysledek * FirstInput;
+                }
+            Result = vysledek;
+            return vysledek;
+                
         }
     }
     //{
