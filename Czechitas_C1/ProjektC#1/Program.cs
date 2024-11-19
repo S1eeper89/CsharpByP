@@ -4,40 +4,57 @@
     {
         static void Main(string[] args)
         {
+            Kalkulacka kalkulacka = new Kalkulacka();
+            Console.WriteLine($"Vysledek: {kalkulacka.VratAktualniVysledek()}");
+
             Console.WriteLine("Zadej prvni cislo");
-            ;
-            double firstNumber;
-            bool isFirstNumber = double.TryParse(Console.ReadLine(), out firstNumber);
-            while (jePrvnicislo == false)
-            {
-                isFirstNumber.WriteLine("Nezadal jsi cislo, zadej cislo.");
-                isFirstNumber = double.TryParse(Console.ReadLine(), out firstNumber);
-            }
+            bool isFirstNumber = double.TryParse(Console.ReadLine(), out double firstNumber);
+            //while (isFirstNumber == false)
+            //{
+            //    Console.WriteLine("Nezadal jsi cislo, zadej cislo.");
+            //    isFirstNumber = double.TryParse(Console.ReadLine(), out firstNumber);
+            //}
+            kalkulacka.Secti(firstNumber);
+
             Console.WriteLine("Zadej prvni operator.");
             string firstOperator = Console.ReadLine();
-            bool jeOperator = (firstOperator == "+" || firstOperator == "-" || firstOperator == "*" || firstOperator == "/" || firstOperator == "^" || firstOperator.ToLower() == "x");
-            while (!jeOperator)
+            //bool jeOperator = (firstOperator == "+" || firstOperator == "-" || firstOperator == "*" || firstOperator == "/" || firstOperator == "^" || firstOperator.ToLower() == "x");
+            //while (!jeOperator)
+            //{
+            //    Console.WriteLine("Nezadal jsi spravny operator, zadej operátor (+) (-) (*) (/) (^)");
+            //    firstOperator = Console.ReadLine();
+            //    jeOperator = (firstOperator == "+" || firstOperator == "-" || firstOperator == "*" || firstOperator == "/" || firstOperator == "^" || firstOperator.ToLower() == "x");
+            //}
+            if (kalkulacka.JePlatnyOperator(firstOperator))
             {
-                Console.WriteLine("Nezadal jsi spravny operator, zadej operátor (+) (-) (*) (/) (^)");
-                firstOperator = Console.ReadLine();
-                jeOperator = (firstOperator == "+" || firstOperator == "-" || firstOperator == "*" || firstOperator == "/" || firstOperator == "^" || firstOperator.ToLower() == "x");
+                Console.WriteLine("Operator je platny");
             }
-            bool isSecondNumber = ;
-            
-            
-            
-            
-            
-            
-            
-            
-            Kalkulacka prvniPriklad = new Kalkulacka(2, "^", 0);
-            double vysledek = prvniPriklad.Umocni();
-            Console.WriteLine(vysledek);
-        }
-        public static void Test()
-        {
-            Console.WriteLine("blabla");
+            else
+            {
+                Console.WriteLine("Operator je neplatny");
+                return;
+            }
+            bool isSecondNumber = double.TryParse(Console.ReadLine(), out double secondNumber);
+            switch(firstOperator)
+            {
+                case "+":
+                    kalkulacka.Secti(secondNumber);
+                    break;
+                case "-":
+                    kalkulacka.Odecti(secondNumber);
+                    break;
+                case "*":
+                    kalkulacka.Nasob(secondNumber);
+                    break;
+                case "/":
+                    kalkulacka.Del(secondNumber);
+                    break;
+                case "^":
+                    kalkulacka.Umocni(secondNumber);
+                    break;
+            }
+            Console.WriteLine($"Vysledek: {kalkulacka.VratAktualniVysledek()}");
+
         }
     }
 }
