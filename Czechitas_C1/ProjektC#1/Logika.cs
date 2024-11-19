@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Linq;
+using System.Net;
 using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,7 +17,8 @@ namespace ProjektC_1
 
     //5. Zadefinuj a naimplementuj metody třídy(Pricti, Odecti, …) pro všechny podporované operace.
     //    Metody budou pracovat s jedním vstupním parametrem a upravovat aktuální výsledek kalkulačky.
-    //6. Zadefinuj a naimplementuj metodu VratAktualniVysledek, která nám bude vracet aktuální výsledek kalkulačky.7. Zkontroluj si, že Kalkulacka nevolá Console (ani ReadLine, ani WriteLine).
+    //6. Zadefinuj a naimplementuj metodu VratAktualniVysledek, která nám bude vracet aktuální výsledek kalkulačky.
+    //7. Zkontroluj si, že Kalkulacka nevolá Console (ani ReadLine, ani WriteLine).
     //8. Ověř si, že logika tvé kalkulačky funguje správně pomocí jejího provolávání v Main (první číslo nastavíme kalkulačce pomocí metody Pricti) Viz níže v příkladu,
     //   který můžeš doplnit svým kódem.
 
@@ -49,45 +51,76 @@ namespace ProjektC_1
     //    }
     public class Kalkulacka
     {
-        public double FirstInput;
-        public string Operator;
-        public double SecondInput;
+        //public double FirstInput;
+        //public string Operator;
+        //public double SecondInput;
         public double Result;
-        public Kalkulacka(double firstNumberInput, string firstOperatorInput, double secondNumberInput, double result = 0)
+        //public Kalkulacka(double firstNumberInput, string firstOperatorInput, double secondNumberInput, double result = 0)
+        public Kalkulacka(double result = 0)
         {
             Result = result;
-            FirstInput = firstNumberInput;
-            Operator = firstOperatorInput;
-            SecondInput = secondNumberInput;
+            //FirstInput = firstNumberInput;
+            //Operator = firstOperatorInput;
+            //SecondInput = secondNumberInput;
         }
         //4.  Zadefinuj a naimplementuj metodu JePlatnyOperator, která nám bude vracet True právě tehdy, když vstupní parametr této metody
         //   bude jeden z námi podporovaných operací(‘+’,’-’,’*’,’/’,’^’).
-        string vstupOperator;
-        public bool JePlatnyOperator()
+        public bool JePlatnyOperator(string vstupOperator)
         {
-            if (Operator == "+"|| Operator == "-"|| Operator == "*" || Operator == "/" || Operator == "^")
+            if (vstupOperator == "+" || vstupOperator == "-" || vstupOperator == "*" || vstupOperator == "/" || vstupOperator == "^")
             {
                 return true;
             }
             else return false;
-            
         }
-        
+        // 5. Načti si druhé číslo z konzole (stačí Console.ReadLine() bez ověřování vstupu) a vykonej správnou operaci na kalkulačce pomocí switche.
+        //        switch (operace)
+        //        {
+        //            case ‘+’:
+        //              “zavolej zde správnou metodu kalkulačky”
+        //        //… dodej všechny možnosti
+        //        //…
+        //        //…
 
-        public double Umocni()
+        public void Secti(double prvniCislo)
         {
-            double vysledek = 1;
-            if (SecondInput == 0)
-                return 1;
-            
-            for (int i = 1; i <= (int)SecondInput; i++)
-                {
-                    vysledek = vysledek * FirstInput;
-                }
-            Result = vysledek;
-            return vysledek;
-                
+            Result += prvniCislo;
         }
+
+        public void Odecti(double prvniCislo)
+        {
+            Result -= prvniCislo;
+        }
+        public void Nasob(double prvniCislo)
+        {
+            Result *= prvniCislo;
+        }
+
+        public void Del(double prvniCislo)
+        {
+            Result /= prvniCislo;
+        }
+        public void Umocni(double prvniCislo)
+        {
+            if (prvniCislo == 0)
+            {
+                Result = 1;
+            }
+            else
+            {
+            Result = 1;
+            for (int i = 1; i <= (int)prvniCislo; i++)
+            {
+                Result *= prvniCislo;
+            }
+            }
+        }
+
+        public double VratAktualniVysledek()
+        {
+            return Result;
+        }
+
     }
     //{
     //    static double Umocni(double mocnenec, int mocnitel)
