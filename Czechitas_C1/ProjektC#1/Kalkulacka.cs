@@ -18,9 +18,9 @@ namespace ProjektC_1
         {
             Result = result;
         }
-        public bool JePlatnyOperator(string vstupOperator)
+        public static bool JePlatnyOperator(string vstupOperator)
         {
-            if (vstupOperator == "+" || vstupOperator == "-" || vstupOperator == "*" || vstupOperator == "/" || vstupOperator == "^")
+            if (vstupOperator == "+" || vstupOperator == "-" || vstupOperator == "*" || vstupOperator == "/" || vstupOperator == "^" || vstupOperator.ToLower() == "x")
             {
                 return true;
             }
