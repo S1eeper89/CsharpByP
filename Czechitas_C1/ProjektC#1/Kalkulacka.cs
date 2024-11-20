@@ -53,11 +53,12 @@ namespace ProjektC_1
             }
             else
             {
-            Result = 1;
-            for (int i = 1; i <= (int)prvniCislo; i++)
-            {
-                Result *= prvniCislo;
-            }
+                double umocniVysledek = Result;
+                Result = 1;
+                for (int i = 1; i <= (int)prvniCislo; i++)
+                {
+                    Result *= umocniVysledek;
+                }
             }
         }
         public double VratAktualniVysledek()

@@ -9,22 +9,11 @@
 
             Console.WriteLine("Zadej prvni cislo");
             bool isFirstNumber = double.TryParse(Console.ReadLine(), out double firstNumber);
-            //while (isFirstNumber == false)
-            //{
-            //    Console.WriteLine("Nezadal jsi cislo, zadej cislo.");
-            //    isFirstNumber = double.TryParse(Console.ReadLine(), out firstNumber);
-            //}
             kalkulacka.Secti(firstNumber);
 
             Console.WriteLine("Zadej prvni operator.");
             string firstOperator = Console.ReadLine();
-            //bool jeOperator = (firstOperator == "+" || firstOperator == "-" || firstOperator == "*" || firstOperator == "/" || firstOperator == "^" || firstOperator.ToLower() == "x");
-            //while (!jeOperator)
-            //{
-            //    Console.WriteLine("Nezadal jsi spravny operator, zadej operátor (+) (-) (*) (/) (^)");
-            //    firstOperator = Console.ReadLine();
-            //    jeOperator = (firstOperator == "+" || firstOperator == "-" || firstOperator == "*" || firstOperator == "/" || firstOperator == "^" || firstOperator.ToLower() == "x");
-            //}
+            
             if (kalkulacka.JePlatnyOperator(firstOperator))
             {
                 Console.WriteLine("Operator je platny");
