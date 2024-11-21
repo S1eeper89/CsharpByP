@@ -8,9 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
-namespace ProjektC_1
+namespace DU_Lekce_8
 {
-   
+
     public class Kalkulacka
     {
         public double Result;

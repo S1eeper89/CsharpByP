@@ -49,7 +49,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lekce_8_breakout", "Lekce_8
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjektC#1", "ProjektC#1\ProjektC#1.csproj", "{88CD64B7-2E64-420F-B11E-DEC126C89BA1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DU_Lekce_7", "DU_Lekce_7\DU_Lekce_7.csproj", "{C0389107-6EB6-428B-BE97-F6363D3ACE02}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DU_Lekce_7", "DU_Lekce_7\DU_Lekce_7.csproj", "{C0389107-6EB6-428B-BE97-F6363D3ACE02}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DU_Lekce_8", "DU_Lekce_8\DU_Lekce_8.csproj", "{FC3D144B-18A9-4BCB-9A80-1C8788F8751F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -153,6 +155,10 @@ Global
 		{C0389107-6EB6-428B-BE97-F6363D3ACE02}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0389107-6EB6-428B-BE97-F6363D3ACE02}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0389107-6EB6-428B-BE97-F6363D3ACE02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC3D144B-18A9-4BCB-9A80-1C8788F8751F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC3D144B-18A9-4BCB-9A80-1C8788F8751F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC3D144B-18A9-4BCB-9A80-1C8788F8751F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC3D144B-18A9-4BCB-9A80-1C8788F8751F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
