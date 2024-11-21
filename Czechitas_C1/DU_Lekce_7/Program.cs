@@ -23,6 +23,7 @@
                 Console.WriteLine("Operator je neplatny");
                 return;
             }
+            Console.WriteLine("Zadej druhé číslo");
             bool isSecondNumber = double.TryParse(Console.ReadLine(), out double secondNumber);
             switch (firstOperator)
             {
@@ -43,7 +44,6 @@
                     break;
             }
             Console.WriteLine($"Vysledek: {kalkulacka.VratAktualniVysledek()}");
-
         }
     }
 }

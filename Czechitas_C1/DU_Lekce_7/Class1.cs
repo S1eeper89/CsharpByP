@@ -13,7 +13,7 @@ namespace DU_Lekce_7
 
     public class Kalkulacka
     {
-        public double Result;
+        private double Result;
         public Kalkulacka(double result = 0)
         {
             Result = result;
