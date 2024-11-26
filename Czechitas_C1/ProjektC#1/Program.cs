@@ -12,6 +12,8 @@
                 Console.WriteLine($"Nezadal jsi správný operátor, zadej operátor (+) (-) (*) (/) (x) ");
                 firstOperator = Console.ReadLine();
             }
+            if (firstOperator == "X")
+                firstOperator = "x";
             return firstOperator;
         }
         // Metoda NactiDesetinneCisloZKonzole parsuje vstup uživatele a kontroluje, že číslo je slučitelné se zvoleným operátorem, vstupem je operátor
@@ -40,6 +42,8 @@
                 }
                 inputTwo = Console.ReadLine();
             }
+            if (inputTwo == "X")
+                inputTwo = "x";
             return inputTwo;
         }
 
@@ -51,7 +55,7 @@
             {
                 // vytvoření první instance kalkulačky
                 Kalkulacka kalkulacka = new Kalkulacka();
-                Console.WriteLine($"Výsledek: {kalkulacka.VratAktualniVysledek()}");
+                Console.WriteLine($"Spouštím kalkulačku.\nVýsledek: {kalkulacka.VratAktualniVysledek()}");
                 // tryparsovaný první vstup, který je následně kontrolovaný ve while cyklu
                 Console.WriteLine("Zadej prvni číslo");
                 bool isFirstNumber = double.TryParse(Console.ReadLine(), out double firstNumber);
