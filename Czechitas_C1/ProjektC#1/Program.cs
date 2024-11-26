@@ -28,15 +28,15 @@
                 }
                 else if (!double.TryParse(inputTwo, out secondNumber))
                 {
-                    Console.WriteLine("Nezadal jsi číslo zadej cislo, nebo (x) pro ukonceni");
+                    Console.WriteLine("Nezadal jsi číslo zadej číslo, nebo (x) pro ukončení");
                 }
                 else if (secondNumber == 0 && firstOperator == "/")
                 {
-                    Console.WriteLine("Nulou nelze dělit, zadej číslo, nebo (x) pro ukonceni");
+                    Console.WriteLine("Nulou nelze dělit, zadej číslo, nebo (x) pro ukončení");
                 }
                 else if (firstOperator == "^" && secondNumber % 1 != 0)
                 {
-                    Console.WriteLine("Nezadal jsi celé číslo, zadej celé číslo, nebo (x) pro ukonceni");
+                    Console.WriteLine("Nezadal jsi celé číslo, zadej celé číslo, nebo (x) pro ukončení");
                 }
                 inputTwo = Console.ReadLine();
             }
@@ -51,13 +51,13 @@
             {
                 // vytvoření první instance kalkulačky
                 Kalkulacka kalkulacka = new Kalkulacka();
-                Console.WriteLine($"Vysledek: {kalkulacka.VratAktualniVysledek()}");
+                Console.WriteLine($"Výsledek: {kalkulacka.VratAktualniVysledek()}");
                 // tryparsovaný první vstup, který je následně kontrolovaný ve while cyklu
-                Console.WriteLine("Zadej prvni cislo");
+                Console.WriteLine("Zadej prvni číslo");
                 bool isFirstNumber = double.TryParse(Console.ReadLine(), out double firstNumber);
                 while (isFirstNumber == false)
                 {
-                    Console.WriteLine("Nezadal jsi cislo, zadej cislo.");
+                    Console.WriteLine("Nezadal jsi číslo, zadej číslo.");
                     isFirstNumber = double.TryParse(Console.ReadLine(), out firstNumber);
                 }
                 kalkulacka.Secti(firstNumber);
@@ -72,7 +72,7 @@
                         Console.WriteLine($"Konečný výsledek = {kalkulacka.VratAktualniVysledek()}");
                         break;
                     }
-                    Console.WriteLine("Zadej dalsi císlo, nebo (x) pro ukonceni");
+                    Console.WriteLine("Zadej další číslo, nebo (x) pro ukončení");
                     // zadání druhého čísla, které provádí operace oproti poslednímu výsledku 
                     string inputSecondNumber = NactiDesetinneCisloZKonzole(firstOperator);
                     // bohužel tady už potenciální celočíseln vstup opakovaně parsuji, protože mi prozí výstup přes x, nenapadlo mě elegantnější řešení :(
