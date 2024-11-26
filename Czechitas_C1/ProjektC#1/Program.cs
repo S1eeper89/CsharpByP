@@ -57,7 +57,7 @@
                 Kalkulacka kalkulacka = new Kalkulacka();
                 Console.WriteLine($"Spouštím kalkulačku.\nVýsledek: {kalkulacka.VratAktualniVysledek()}");
                 // tryparsovaný první vstup, který je následně kontrolovaný ve while cyklu
-                Console.WriteLine("Zadej prvni číslo");
+                Console.WriteLine("Zadej první číslo");
                 bool isFirstNumber = double.TryParse(Console.ReadLine(), out double firstNumber);
                 while (isFirstNumber == false)
                 {
