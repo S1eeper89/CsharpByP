@@ -69,7 +69,7 @@
                     firstOperator = NactiOperatorKonzole();
                     if (firstOperator == "x")
                     {
-                        Console.WriteLine($"Konečný výsledek = {kalkulacka.Result}");
+                        Console.WriteLine($"Konečný výsledek = {kalkulacka.VratAktualniVysledek()}");
                         break;
                     }
                     Console.WriteLine("Zadej dalsi císlo, nebo (x) pro ukonceni");
