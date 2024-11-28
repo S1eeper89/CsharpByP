@@ -61,6 +61,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lekce_9_breakoutroom1", "Le
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lekce_9_pole2", "Lekce_9_pole2\Lekce_9_pole2.csproj", "{BD08B4E7-2B75-48C2-9200-27351821D53A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lekce_10_Vyklad", "Lekce_10_Vyklad\Lekce_10_Vyklad.csproj", "{56BC6A6C-9F01-41BF-A558-4F92B3D44F17}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lekce_10_breakoutroom", "Lekce_10_breakoutroom\Lekce_10_breakoutroom.csproj", "{A3477C6C-551A-4461-86A5-93F23D9B7EA5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrafickaKalkulackaWindowsFormsApp", "GrafickaKalkulackaWindowsFormsApp\GrafickaKalkulackaWindowsFormsApp.csproj", "{34D7492C-64F2-4BCE-B32C-609998354DB0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -183,6 +189,18 @@ Global
 		{BD08B4E7-2B75-48C2-9200-27351821D53A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD08B4E7-2B75-48C2-9200-27351821D53A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD08B4E7-2B75-48C2-9200-27351821D53A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56BC6A6C-9F01-41BF-A558-4F92B3D44F17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56BC6A6C-9F01-41BF-A558-4F92B3D44F17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56BC6A6C-9F01-41BF-A558-4F92B3D44F17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56BC6A6C-9F01-41BF-A558-4F92B3D44F17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3477C6C-551A-4461-86A5-93F23D9B7EA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3477C6C-551A-4461-86A5-93F23D9B7EA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3477C6C-551A-4461-86A5-93F23D9B7EA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3477C6C-551A-4461-86A5-93F23D9B7EA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34D7492C-64F2-4BCE-B32C-609998354DB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34D7492C-64F2-4BCE-B32C-609998354DB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34D7492C-64F2-4BCE-B32C-609998354DB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34D7492C-64F2-4BCE-B32C-609998354DB0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
