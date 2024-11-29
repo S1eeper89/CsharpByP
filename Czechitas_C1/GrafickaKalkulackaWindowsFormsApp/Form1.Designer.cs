@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            textBox1 = new TextBox();
+            textBoxVysledek = new TextBox();
             buttonn7 = new Button();
             buttonn9 = new Button();
             buttonn8 = new Button();
@@ -52,13 +52,13 @@
             buttonErease = new Button();
             SuspendLayout();
             // 
-            // textBox1
+            // textBoxVysledek
             // 
-            textBox1.Location = new Point(50, 50);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(300, 23);
-            textBox1.TabIndex = 0;
-            textBox1.TextChanged += textBox1_TextChanged;
+            textBoxVysledek.Location = new Point(50, 50);
+            textBoxVysledek.Name = "textBoxVysledek";
+            textBoxVysledek.Size = new Size(300, 23);
+            textBoxVysledek.TabIndex = 0;
+            textBoxVysledek.TextChanged += textBox1_TextChanged;
             // 
             // buttonn7
             // 
@@ -69,6 +69,7 @@
             buttonn7.TabIndex = 1;
             buttonn7.Text = "7";
             buttonn7.UseVisualStyleBackColor = true;
+            buttonn7.Click += ButtonCislo_Click;
             // 
             // buttonn9
             // 
@@ -79,6 +80,7 @@
             buttonn9.TabIndex = 2;
             buttonn9.Text = "9";
             buttonn9.UseVisualStyleBackColor = true;
+            buttonn9.Click += ButtonCislo_Click;
             // 
             // buttonn8
             // 
@@ -89,6 +91,7 @@
             buttonn8.TabIndex = 3;
             buttonn8.Text = "8";
             buttonn8.UseVisualStyleBackColor = true;
+            buttonn8.Click += ButtonCislo_Click;
             // 
             // buttonn4
             // 
@@ -99,6 +102,7 @@
             buttonn4.TabIndex = 4;
             buttonn4.Text = "4";
             buttonn4.UseVisualStyleBackColor = true;
+            buttonn4.Click += ButtonCislo_Click;
             // 
             // buttonn1
             // 
@@ -109,6 +113,7 @@
             buttonn1.TabIndex = 5;
             buttonn1.Text = "1";
             buttonn1.UseVisualStyleBackColor = true;
+            buttonn1.Click += ButtonCislo_Click;
             // 
             // buttonn5
             // 
@@ -119,6 +124,7 @@
             buttonn5.TabIndex = 6;
             buttonn5.Text = "5";
             buttonn5.UseVisualStyleBackColor = true;
+            buttonn5.Click += ButtonCislo_Click;
             // 
             // buttonn6
             // 
@@ -129,6 +135,7 @@
             buttonn6.TabIndex = 7;
             buttonn6.Text = "6";
             buttonn6.UseVisualStyleBackColor = true;
+            buttonn6.Click += ButtonCislo_Click;
             // 
             // buttonn3
             // 
@@ -139,7 +146,7 @@
             buttonn3.TabIndex = 8;
             buttonn3.Text = "3";
             buttonn3.UseVisualStyleBackColor = true;
-            buttonn3.Click += button8_Click;
+            buttonn3.Click += ButtonCislo_Click;
             // 
             // buttonn2
             // 
@@ -150,7 +157,7 @@
             buttonn2.TabIndex = 9;
             buttonn2.Text = "2";
             buttonn2.UseVisualStyleBackColor = true;
-            buttonn2.Click += button9_Click;
+            buttonn2.Click += ButtonCislo_Click;
             // 
             // buttonn0
             // 
@@ -169,7 +176,7 @@
             buttonDot.Name = "buttonDot";
             buttonDot.Size = new Size(50, 50);
             buttonDot.TabIndex = 11;
-            buttonDot.Text = ",";
+            buttonDot.Text = ".";
             buttonDot.UseVisualStyleBackColor = true;
             // 
             // buttonMinus
@@ -181,6 +188,7 @@
             buttonMinus.TabIndex = 12;
             buttonMinus.Text = "-";
             buttonMinus.UseVisualStyleBackColor = true;
+            buttonMinus.Click += ButtonOperator_Click;
             // 
             // buttonPlus
             // 
@@ -191,6 +199,7 @@
             buttonPlus.TabIndex = 13;
             buttonPlus.Text = "+";
             buttonPlus.UseVisualStyleBackColor = true;
+            buttonPlus.Click += ButtonOperator_Click;
             // 
             // buttonDivide
             // 
@@ -201,7 +210,7 @@
             buttonDivide.TabIndex = 14;
             buttonDivide.Text = "/";
             buttonDivide.UseVisualStyleBackColor = true;
-            buttonDivide.Click += button14_Click;
+            buttonDivide.Click += ButtonOperator_Click;
             // 
             // buttonMultiply
             // 
@@ -212,6 +221,7 @@
             buttonMultiply.TabIndex = 15;
             buttonMultiply.Text = "*";
             buttonMultiply.UseVisualStyleBackColor = true;
+            buttonMultiply.Click += ButtonOperator_Click;
             // 
             // buttonExp
             // 
@@ -222,6 +232,7 @@
             buttonExp.TabIndex = 16;
             buttonExp.Text = "^";
             buttonExp.UseVisualStyleBackColor = true;
+            buttonExp.Click += ButtonOperator_Click;
             // 
             // buttonRound
             // 
@@ -262,6 +273,7 @@
             buttonnRovnaSe.TabIndex = 20;
             buttonnRovnaSe.Text = "=";
             buttonnRovnaSe.UseVisualStyleBackColor = true;
+            buttonnRovnaSe.Click += ButtonOperator_Click;
             // 
             // buttonErease
             // 
@@ -302,7 +314,7 @@
             Controls.Add(buttonn8);
             Controls.Add(buttonn9);
             Controls.Add(buttonn7);
-            Controls.Add(textBox1);
+            Controls.Add(textBoxVysledek);
             Name = "Calculator4every1";
             Text = "Calculator4every1";
             Load += Calculator4every1_Load;
@@ -312,7 +324,7 @@
 
         #endregion
 
-        private TextBox textBox1;
+        private TextBox textBoxVysledek;
         private Button buttonn7;
         private Button buttonn9;
         private Button buttonn8;
