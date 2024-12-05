@@ -69,7 +69,8 @@ namespace GrafickaKalkulackaWindowsFormsApp
             }
 
             // Zobrazení výsledku
-            textBoxVysledek.Text = kalkulacka.VratAktualniVysledek().ToString();
+            double vysledekProVysledek = kalkulacka.VratAktualniVysledek();
+            textBoxVysledek.Text = vysledekProVysledek.ToString();
         }
 
         private void Calculator4every1_Load(object sender, EventArgs e)
