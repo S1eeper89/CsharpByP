@@ -67,6 +67,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lekce_10_breakoutroom", "Le
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrafickaKalkulackaWindowsFormsApp", "GrafickaKalkulackaWindowsFormsApp\GrafickaKalkulackaWindowsFormsApp.csproj", "{34D7492C-64F2-4BCE-B32C-609998354DB0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lekce_11_1", "Lekce_11_1\Lekce_11_1.csproj", "{476EB41B-DAB5-404E-9CF2-9E835D115ABF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lekce_11_breakoutroom_1", "Lekce_11_breakoutroom_1\Lekce_11_breakoutroom_1.csproj", "{92E8703E-48D0-4B06-AD5C-6B4FA00FA7D0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -201,6 +205,14 @@ Global
 		{34D7492C-64F2-4BCE-B32C-609998354DB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{34D7492C-64F2-4BCE-B32C-609998354DB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{34D7492C-64F2-4BCE-B32C-609998354DB0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{476EB41B-DAB5-404E-9CF2-9E835D115ABF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{476EB41B-DAB5-404E-9CF2-9E835D115ABF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{476EB41B-DAB5-404E-9CF2-9E835D115ABF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{476EB41B-DAB5-404E-9CF2-9E835D115ABF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92E8703E-48D0-4B06-AD5C-6B4FA00FA7D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92E8703E-48D0-4B06-AD5C-6B4FA00FA7D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92E8703E-48D0-4B06-AD5C-6B4FA00FA7D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92E8703E-48D0-4B06-AD5C-6B4FA00FA7D0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
