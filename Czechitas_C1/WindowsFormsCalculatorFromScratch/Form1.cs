@@ -5,105 +5,133 @@ namespace WindowsFormsCalculatorFromScratch
     public partial class KalkulackaHH : Form
     {
         private Kalkulacka kalkulacka;
-        bool prvniIterace = true;
-        bool zadavamNoveCislo = true;
-        bool zadavamCisloPovysledku = false;
+        bool zadavamCislo;
         string posledniOperator = "";
         double cislo;
         public KalkulackaHH()
         {
-            kalkulacka = new Kalkulacka(0);
             InitializeComponent();
+            kalkulacka = new Kalkulacka(0);
+            ObnovStav();
         }
         private void numberClick(object sender, EventArgs e)
         {
             Button tlacitko = (Button)sender;
-            // uprava pro prvni iteraci s inicializaci vysledku
-            //if (prvniIterace == true)
-            //{
-            //    kalkulacka.Secti(double.Parse(tlacitko.Text));
-            //    prvniIterace = false;
-            //}
-            // if podminka umoznujici zacit po vysledku s novym cislem bez dalsiho operatoru
-            if (zadavamCisloPovysledku == true)
+            // pokud zaciname nove cislo, vycisti textbox
+            if (zadavamCislo)
             {
                 textBox1.Text = "";
-                zadavamCisloPovysledku = false;
-                kalkulacka.VycistiAktualniVysledek();
+                zadavamCislo = false;
             }
-            // if podminka pro vymazani textboxu po zadani operatoru
-            if (zadavamNoveCislo)
-            {
-                textBox1.Text = "";
-                zadavamNoveCislo = false;
-            }
+            // pridej cislo do textboxu
             textBox1.Text += tlacitko.Text;
         }
 
-        private void operatorClick(object sender, EventArgs e)
+        private void tlacitkoZnamenko(object sender, EventArgs e)
         {
             Button tlacitkoZnamenko = (Button)sender;
-            if (prvniIterace == true)
+
+            // pokud se operator zadava po cisle
+            if (!zadavamCislo)
             {
-                kalkulacka.NastavVysledek(double.Parse(textBox1.Text, CultureInfo.InvariantCulture));
-                prvniIterace = false;
+                cislo = double.Parse(textBox1.Text, CultureInfo.InvariantCulture);
+                // zobrazeni operatoru
+                if (!string.IsNullOrEmpty(posledniOperator))
+                {
+                    ProvedOperaci(posledniOperator, cislo);
+                }
+                else
+                {
+                    kalkulacka.NastavVysledek(cislo);
+                }
             }
 
-            zadavamNoveCislo = true;
-            cislo = double.Parse(textBox1.Text, CultureInfo.InvariantCulture);
+            //nastaveni noveho operatoru
             posledniOperator = tlacitkoZnamenko.Text;
-            label2.Text = tlacitkoZnamenko.Text;
-            // bool umoznujici prepsat posledni vysledek novym cislem pro novy vypocet
-            zadavamCisloPovysledku = false;
+            zadavamCislo = true;
+            label2.Text = posledniOperator;
+
         }
+        private void ProvedOperaci(string operace, double hodnota)
+        {
+            switch (operace)
+            {
+                case "+":
+                    kalkulacka.Secti(hodnota);
+                    break;
+                case "-":
+                    kalkulacka.Odecti(hodnota);
+                    break;
+                case "*":
+                    kalkulacka.Nasob(hodnota);
+                    break;
+                case "/":
+                    kalkulacka.Del(hodnota);
+                 
+                    break;
+                default:
+                    MessageBox.Show("Neznámý operátor!", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Error); //sjednotit na textbox/osetrit
+                    break;
+            }
+        }
+
 
         private void RovnaSeClick(object sender, EventArgs e)
         {
-            bool jeCislo = double.TryParse(textBox1.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out cislo);
-            if (prvniIterace)
+            if (!double.TryParse(textBox1.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out cislo))
             {
-                kalkulacka.NastavVysledek(cislo);
-                prvniIterace = false;
+                MessageBox.Show("Neplatné èíslo!", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if ( cislo == 0)
+            {
+
+            }
+
+            // Provedeme operaci, pokud existuje platný operátor
+            if (!string.IsNullOrEmpty(posledniOperator))
+            {
+                ProvedOperaci(posledniOperator, cislo);
+            }
+            if (posledniOperator == "/" && cislo == 0)
+            {
+                textBox1.Text = "Nulou nelze dìlit";
+                zadavamCislo = true;
             }
             else
             {
-                switch (posledniOperator)
+                // Zobrazíme výsledek
+                double vysledek = kalkulacka.VratAktualniVysledek();
+                textBox1.Text = vysledek.ToString(CultureInfo.InvariantCulture);
+                label1.Text = $"= {vysledek}";
+
+                // Pøipraveno na nové zadávání
+                zadavamCislo = true;
+                posledniOperator = ""; // Reset operátoru
+
+                if (checkBoxZaokruhliDve.Checked)
                 {
-                    case "+":
-                        kalkulacka.Secti(cislo);
-                        break;
-                    case "-":
-                        kalkulacka.Odecti(cislo);
-                        break;
-                    case "*":
-                        kalkulacka.Nasob(cislo);
-                        break;
-                    case "/":
-                        kalkulacka.Del(cislo);
-                        break;
-                    case "^":
-                        kalkulacka.Umocni(cislo);
-                        break;
-                    default:
-                        break;
+                    kalkulacka.ZaokrouhliNaDveDesetinnaMista();
+                    vysledek = kalkulacka.VratAktualniVysledek();
+                    textBox1.Text = vysledek.ToString(CultureInfo.InvariantCulture);
+                    label1.Text = $"= {vysledek}";
 
                 }
-
             }
-            
-            // bool umoznujici prepsat posledni vysledek novym cislem pro novy vypocet
-            zadavamCisloPovysledku = true;
-            double vysledek = kalkulacka.VratAktualniVysledek();
-            textBox1.Text = vysledek.ToString(CultureInfo.InvariantCulture);
-            label1.Text = $"= {vysledek.ToString(CultureInfo.InvariantCulture)}";
-
         }
+
+        private void resetKalkulackyClick(object sender, EventArgs e)
+        {
+            ObnovStav();
+        }
+
         // metoda pro tlacitko DEL na mazani posledniho znaku
         private void Umazclick(object sender, EventArgs e)
         {
             //podminka pro ochrano pro mazani v pripade 0 znaku
-            if (!string.IsNullOrEmpty(textBox1.Text))
+            if (textBox1.Text.Length > 0)
             {
+                //textBox1.Text = textBox1.Text[..^1];
                 textBox1.Text = textBox1.Text.Remove(textBox1.Text.Length - 1);
             }
         }
@@ -119,7 +147,7 @@ namespace WindowsFormsCalculatorFromScratch
             textBox1.Text = (-zmenHodnotu).ToString(CultureInfo.InvariantCulture);
 
         }
-        private void resetKalkulackyClick(object sender, EventArgs e)
+        private void ObnovStav()
         {
             {
                 // Resetuj instance kalkulaèky
@@ -129,10 +157,12 @@ namespace WindowsFormsCalculatorFromScratch
                 textBox1.Text = "0";
 
                 // Resetuj stavové promìnné
-                prvniIterace = true;
-                zadavamNoveCislo = true;
-                zadavamCisloPovysledku = false;
+                //prvniIterace = true; smazat
+                //zadavamNoveCislo = true; smazat
+                zadavamCislo = true;
                 posledniOperator = "";
+                label1.Text = "";
+                label2.Text = "";
 
                 // Vyèisti štítky nebo další vizuální indikátory
                 label1.Text = "";
@@ -144,21 +174,17 @@ namespace WindowsFormsCalculatorFromScratch
         {
             double zaokrouhlenyVysledek = kalkulacka.VratAktualniVysledek();
             textBox1.Text = zaokrouhlenyVysledek.ToString();
+           
         }
+        // gombik pro zaokruhlovani
         private void btnDecimal_Click(object sender, EventArgs e)
         {
-            // Pokud právì zadávám nové èíslo, pøiprav textBox na nový vstup
-            if (zadavamNoveCislo)
+            if (!textBox1.Text.Contains("."))
             {
-                textBox1.Text = "0";
-                zadavamNoveCislo = false;
+                textBox1.Text += ".";
+                kalkulacka.NastavVysledek(0);
             }
-
-            // Zkontroluj, jestli èíslo již obsahuje desetinnou teèku
-            if (!textBox1.Text.Contains(","))
-            {
-                textBox1.Text += ",";
-            }
+            zadavamCislo = false;
         }
     }
 }

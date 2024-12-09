@@ -20,6 +20,24 @@ namespace WindowsFormsCalculatorFromScratch
             Result = result;
         }
 
+
+        public void NastavVysledek(double hodnota)
+        {
+            Result = hodnota;
+        }
+
+        // Metoda vracející aktuální výsledek.
+        public double VratAktualniVysledek()
+        {
+            return Result;
+        }
+
+        //metoda cistici aktualni vysledek
+        public double VycistiAktualniVysledek()
+        {
+            return Result = 0;
+        }
+
         // Statická metoda, která ověřuje, zda je zadaný operátor platný.
         public static bool JePlatnyOperator(string vstupOperator)
         {
@@ -55,47 +73,35 @@ namespace WindowsFormsCalculatorFromScratch
             Result /= druheCislo;
         }
 
-        // Metoda pro umocnění aktuálního výsledku druhým číslem (mocnitelem)
-        public void Umocni(double mocnitel)
-        {
-            // Speciální případ mocnění nulou
-            if (mocnitel == 0)
-            {
-                Result = 1;
-            }
-            else
-            {
-                // Uložení výsledku
-                double mocnenec = Result;
-                // Inicializace výsledku pro mocnění
-                Result = 1;
-                // For cyklus pro výpočet mocniny
-                for (int i = 1; i <= (int)mocnitel; i++)
-                {
-                    Result *= mocnenec;
-                }
-            }
-        }
+        // pridal bych rozhodne math, pokud bych implementoval, ale ze sentimentu nechavam
+        //// Metoda pro umocnění aktuálního výsledku druhým číslem (mocnitelem)
+        //public void Umocni(double mocnitel)
+        //{
+        //    // Speciální případ mocnění nulou
+        //    if (mocnitel == 0)
+        //    {
+        //        Result = 1;
+        //    }
+        //    else
+        //    {
+        //        // Uložení výsledku
+        //        double mocnenec = Result;
+        //        // Inicializace výsledku pro mocnění
+        //        Result = 1;
+        //        // For cyklus pro výpočet mocniny
+        //        for (int i = 1; i <= (int)mocnitel; i++)
+        //        {
+        //            Result *= mocnenec;
+        //        }
+        //    }
+        //}
 
-        // Metoda vracející aktuální výsledek.
-        public double VratAktualniVysledek()
-        {
-            return Result;
-        }
-        //metoda cistici aktualni vysledek
-        public double VycistiAktualniVysledek()
-        {
-            return Result = 0;
-        }
         // metoda zaokrouhlí na dvě desetinná místa
         public void ZaokrouhliNaDveDesetinnaMista()
         {
             Result = Math.Round(Result, 2); 
         }
-        public void NastavVysledek(double hodnota)
-        {
-            Result = hodnota; 
-        }
+      
 
     }
 }

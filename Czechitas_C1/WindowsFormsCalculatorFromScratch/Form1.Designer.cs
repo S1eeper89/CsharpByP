@@ -51,6 +51,7 @@
             buttonC = new Button();
             buttonRound = new Button();
             button10 = new Button();
+            checkBoxZaokruhliDve = new CheckBox();
             SuspendLayout();
             // 
             // button1
@@ -168,7 +169,7 @@
             buttonPlus.TabIndex = 11;
             buttonPlus.Text = "+";
             buttonPlus.UseVisualStyleBackColor = true;
-            buttonPlus.Click += operatorClick;
+            buttonPlus.Click += tlacitkoZnamenko;
             // 
             // buttonMinus
             // 
@@ -178,7 +179,7 @@
             buttonMinus.TabIndex = 12;
             buttonMinus.Text = "-";
             buttonMinus.UseVisualStyleBackColor = true;
-            buttonMinus.Click += operatorClick;
+            buttonMinus.Click += tlacitkoZnamenko;
             // 
             // button13
             // 
@@ -188,7 +189,7 @@
             button13.TabIndex = 13;
             button13.Text = "*";
             button13.UseVisualStyleBackColor = true;
-            button13.Click += operatorClick;
+            button13.Click += tlacitkoZnamenko;
             // 
             // button14
             // 
@@ -198,7 +199,7 @@
             button14.TabIndex = 14;
             button14.Text = "/";
             button14.UseVisualStyleBackColor = true;
-            button14.Click += operatorClick;
+            button14.Click += tlacitkoZnamenko;
             // 
             // button15
             // 
@@ -276,11 +277,22 @@
             button10.UseVisualStyleBackColor = true;
             button10.Click += btnDecimal_Click;
             // 
+            // checkBoxZaokruhliDve
+            // 
+            checkBoxZaokruhliDve.AutoSize = true;
+            checkBoxZaokruhliDve.Location = new Point(478, 121);
+            checkBoxZaokruhliDve.Name = "checkBoxZaokruhliDve";
+            checkBoxZaokruhliDve.Size = new Size(96, 19);
+            checkBoxZaokruhliDve.TabIndex = 23;
+            checkBoxZaokruhliDve.Text = "ROUND TWO";
+            checkBoxZaokruhliDve.UseVisualStyleBackColor = true;
+            // 
             // KalkulackaHH
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(checkBoxZaokruhliDve);
             Controls.Add(button10);
             Controls.Add(buttonRound);
             Controls.Add(buttonC);
@@ -335,5 +347,6 @@
         private Button buttonC;
         private Button buttonRound;
         private Button button10;
+        private CheckBox checkBoxZaokruhliDve;
     }
 }
