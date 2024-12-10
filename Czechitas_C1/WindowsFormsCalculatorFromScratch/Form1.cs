@@ -70,7 +70,7 @@ namespace WindowsFormsCalculatorFromScratch
                  
                     break;
                 default:
-                    MessageBox.Show("Neznámý operátor!", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Error); //sjednotit na textbox/osetrit
+                    MessageBox.Show("Neznámý operátor!", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Error); //melo by uz byt zbytecne
                     break;
             }
         }
@@ -120,6 +120,7 @@ namespace WindowsFormsCalculatorFromScratch
             }
         }
 
+        // metoda pro uvedeni kalkulackz do vychoziho stavu
         private void resetKalkulackyClick(object sender, EventArgs e)
         {
             ObnovStav();
@@ -128,11 +129,15 @@ namespace WindowsFormsCalculatorFromScratch
         // metoda pro tlacitko DEL na mazani posledniho znaku
         private void Umazclick(object sender, EventArgs e)
         {
-            //podminka pro ochrano pro mazani v pripade 0 znaku
-            if (textBox1.Text.Length > 0)
+            if (textBox1.Text.Length > 0)  //podminka pro ochrano pro mazani v pripade 0 znaku
+
             {
-                //textBox1.Text = textBox1.Text[..^1];
                 textBox1.Text = textBox1.Text.Remove(textBox1.Text.Length - 1);
+            }
+            if (textBox1.Text.Length == 0)
+            {
+                textBox1.Text = "0";
+                zadavamCislo = true;
             }
         }
         //funkce pro zmenu zmanenka
@@ -145,6 +150,7 @@ namespace WindowsFormsCalculatorFromScratch
             }
             double zmenHodnotu = double.Parse(textBox1.Text, CultureInfo.InvariantCulture);
             textBox1.Text = (-zmenHodnotu).ToString(CultureInfo.InvariantCulture);
+            zadavamCislo = false;
 
         }
         private void ObnovStav()
@@ -157,8 +163,6 @@ namespace WindowsFormsCalculatorFromScratch
                 textBox1.Text = "0";
 
                 // Resetuj stavové promìnné
-                //prvniIterace = true; smazat
-                //zadavamNoveCislo = true; smazat
                 zadavamCislo = true;
                 posledniOperator = "";
                 label1.Text = "";
