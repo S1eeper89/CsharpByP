@@ -8,6 +8,7 @@ namespace WindowsFormsCalculatorFromScratch
         bool zadavamCislo;
         string posledniOperator = "";
         double cislo;
+        bool preskakujiRovnaSe = false;
         public KalkulackaHH()
         {
             InitializeComponent();
@@ -44,13 +45,25 @@ namespace WindowsFormsCalculatorFromScratch
                 {
                     kalkulacka.NastavVysledek(cislo);
                 }
+                if (preskakujiRovnaSe)
+                {
+                    if (posledniOperator == "/" && cislo == 0)
+                    {
+                        textBox1.Text = "Nulou nelze dìlit";
+                        zadavamCislo = true;
+                        return;
+                    }
+                    double vysledek = kalkulacka.VratAktualniVysledek();
+                    textBox1.Text = vysledek.ToString(CultureInfo.InvariantCulture);
+                    label1.Text = $"= {vysledek}";
+                }
             }
 
             //nastaveni noveho operatoru
             posledniOperator = tlacitkoZnamenko.Text;
             zadavamCislo = true;
             label2.Text = posledniOperator;
-
+            preskakujiRovnaSe = true;
         }
         private void ProvedOperaci(string operace, double hodnota)
         {
@@ -78,20 +91,24 @@ namespace WindowsFormsCalculatorFromScratch
 
         private void RovnaSeClick(object sender, EventArgs e)
         {
+            preskakujiRovnaSe = false;
             if (!double.TryParse(textBox1.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out cislo))
             {
                 MessageBox.Show("Neplatné èíslo!", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
-            }
-            if ( cislo == 0)
-            {
-
             }
 
             // Provedeme operaci, pokud existuje platný operátor
             if (!string.IsNullOrEmpty(posledniOperator))
             {
                 ProvedOperaci(posledniOperator, cislo);
+            }
+            else
+            {
+                cislo = double.Parse(textBox1.Text, CultureInfo.InvariantCulture);
+                {
+                    kalkulacka.NastavVysledek(cislo);
+                }
             }
             if (posledniOperator == "/" && cislo == 0)
             {
@@ -176,9 +193,31 @@ namespace WindowsFormsCalculatorFromScratch
         // Metoda pro ziskani zaokrouhleneho vysledeku
         private void buttonRoundClick(object sender, EventArgs e)
         {
+            cislo = double.Parse(textBox1.Text, CultureInfo.InvariantCulture);
+            // zobrazeni operatoru
+            if (!string.IsNullOrEmpty(posledniOperator))
+            {
+                ProvedOperaci(posledniOperator, cislo);
+            }
+            else
+            {
+                kalkulacka.NastavVysledek(cislo);
+            }
+            if (preskakujiRovnaSe)
+            {
+                if (posledniOperator == "/" && cislo == 0)
+                {
+                    textBox1.Text = "Nulou nelze dìlit";
+                    zadavamCislo = true;
+                    return;
+                }
+                double vysledek = kalkulacka.VratAktualniVysledek();
+                textBox1.Text = vysledek.ToString(CultureInfo.InvariantCulture);
+                label1.Text = $"= {vysledek}";
+            }
+            kalkulacka.ZaokrouhliNaDveDesetinnaMista();
             double zaokrouhlenyVysledek = kalkulacka.VratAktualniVysledek();
-            textBox1.Text = zaokrouhlenyVysledek.ToString();
-           
+            textBox1.Text = zaokrouhlenyVysledek.ToString(CultureInfo.InvariantCulture);
         }
         // gombik pro zaokruhlovani
         private void btnDecimal_Click(object sender, EventArgs e)
@@ -186,7 +225,7 @@ namespace WindowsFormsCalculatorFromScratch
             if (!textBox1.Text.Contains("."))
             {
                 textBox1.Text += ".";
-                kalkulacka.NastavVysledek(0);
+                //kalkulacka.NastavVysledek(0);
             }
             zadavamCislo = false;
         }
