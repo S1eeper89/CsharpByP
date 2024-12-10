@@ -53,20 +53,21 @@ namespace WindowsFormsCalculatorFromScratch
             label2.Text = posledniOperator;
             if (posledniOperator == "/" && cislo == 0)
             {
-                textBox1.Text = "Nulou nelze dï¿½lit";
+                textBox1.Text = "Nulou nelze dìlit";
                 zadavamCislo = true;
+                preskakujiRovnaSe = true;
                 return;
             }
             if (preskakujiRovnaSe)
             {
-                // Zobrazï¿½me vï¿½sledek
+                // Zobrazíme výsledek
                 double vysledek = kalkulacka.VratAktualniVysledek();
                 textBox1.Text = vysledek.ToString(CultureInfo.InvariantCulture);
                 label1.Text = $"= {vysledek}";
 
-                // Pï¿½ipraveno na novï¿½ zadï¿½vï¿½nï¿½
+                // Pøipraveno na nové zadávání
                 zadavamCislo = true;
-                posledniOperator = ""; // Reset operï¿½toru
+                posledniOperator = ""; // Reset operátoru
 
                 if (checkBoxZaokruhliDve.Checked)
                 {
@@ -82,6 +83,12 @@ namespace WindowsFormsCalculatorFromScratch
         }
         private void ProvedOperaci(string operace, double hodnota)
         {
+            if (operace == "/" && hodnota == 0)
+            {
+                textBox1.Text = "Nulou nelze dìlit";
+                AktualizujStavTlacitek();
+                return;
+            }
             switch (operace)
             {
                 case "+":
@@ -95,12 +102,13 @@ namespace WindowsFormsCalculatorFromScratch
                     break;
                 case "/":
                     kalkulacka.Del(hodnota);
-                 
                     break;
                 default:
-                    MessageBox.Show("Neznámý operátor!", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Error); //melo by uz byt zbytecne
+                    MessageBox.Show("Neznámý operátor!", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     break;
             }
+            
+
         }
 
 
@@ -111,21 +119,13 @@ namespace WindowsFormsCalculatorFromScratch
                 MessageBox.Show("Neplatné èíslo!", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if ( cislo == 0)
-            {
-
-            }
-
             // Provedeme operaci, pokud existuje platný operátor
             if (!string.IsNullOrEmpty(posledniOperator))
             {
                 ProvedOperaci(posledniOperator, cislo);
             }
-            if (posledniOperator == "/" && cislo == 0)
-            {
-                textBox1.Text = "Nulou nelze dìlit";
-                zadavamCislo = true;
-            }
+            
+            
             else
             {
                 // Zobrazíme výsledek
@@ -146,12 +146,14 @@ namespace WindowsFormsCalculatorFromScratch
 
                 }
             }
+            preskakujiRovnaSe = false;
         }
 
         // metoda pro uvedeni kalkulackz do vychoziho stavu
         private void resetKalkulackyClick(object sender, EventArgs e)
         {
             ObnovStav();
+            AktualizujStavTlacitek();
         }
 
         // metoda pro tlacitko DEL na mazani posledniho znaku
@@ -172,7 +174,7 @@ namespace WindowsFormsCalculatorFromScratch
         private void ZmenHodnotuClick(object sender, EventArgs e)
         {
             //osetreni prazdneho vstupu pro zmenu znamenka 
-            if (string.IsNullOrWhiteSpace(textBox1.Text))
+            if (string.IsNullOrEmpty(textBox1.Text))
             {
                 textBox1.Text = "0";
             }
@@ -206,7 +208,7 @@ namespace WindowsFormsCalculatorFromScratch
         {
             double zaokrouhlenyVysledek = kalkulacka.VratAktualniVysledek();
             textBox1.Text = zaokrouhlenyVysledek.ToString();
-           
+
         }
         // gombik pro zaokruhlovani
         private void btnDecimal_Click(object sender, EventArgs e)
@@ -217,6 +219,26 @@ namespace WindowsFormsCalculatorFromScratch
                 kalkulacka.NastavVysledek(0);
             }
             zadavamCislo = false;
+        }
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            AktualizujStavTlacitek();
+        }
+        private void AktualizujStavTlacitek()
+        {
+            string text = textBox1.Text;
+
+            // Pokud text obsahuje chybu nebo není èíslo, deaktivujeme tlaèítka operátorù a "="
+            bool jeCislo = double.TryParse(text, out _);
+            bool obsahujeChybu = text == "Nulou nelze delit";
+
+            // Aktivuj pouze tlaèítka, která nemají být blokována
+            buttonPlus.Enabled = jeCislo && !obsahujeChybu;
+            buttonMinus.Enabled = jeCislo && !obsahujeChybu;
+            buttonMultiply.Enabled = jeCislo && !obsahujeChybu; // "*"
+            buttonDivide.Enabled = jeCislo && !obsahujeChybu; // "/"
+            buttonEquals.Enabled = jeCislo && !obsahujeChybu; // "="
+            buttonPoint.Enabled = jeCislo && !obsahujeChybu; // "."
         }
     }
 }
