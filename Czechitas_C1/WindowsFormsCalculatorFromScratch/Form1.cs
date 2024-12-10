@@ -8,6 +8,7 @@ namespace WindowsFormsCalculatorFromScratch
         bool zadavamCislo;
         string posledniOperator = "";
         double cislo;
+        bool preskakujiRovnaSe = false;
         public KalkulackaHH()
         {
             InitializeComponent();
@@ -50,6 +51,33 @@ namespace WindowsFormsCalculatorFromScratch
             posledniOperator = tlacitkoZnamenko.Text;
             zadavamCislo = true;
             label2.Text = posledniOperator;
+            if (posledniOperator == "/" && cislo == 0)
+            {
+                textBox1.Text = "Nulou nelze d�lit";
+                zadavamCislo = true;
+                return;
+            }
+            if (preskakujiRovnaSe)
+            {
+                // Zobraz�me v�sledek
+                double vysledek = kalkulacka.VratAktualniVysledek();
+                textBox1.Text = vysledek.ToString(CultureInfo.InvariantCulture);
+                label1.Text = $"= {vysledek}";
+
+                // P�ipraveno na nov� zad�v�n�
+                zadavamCislo = true;
+                posledniOperator = ""; // Reset oper�toru
+
+                if (checkBoxZaokruhliDve.Checked)
+                {
+                    kalkulacka.ZaokrouhliNaDveDesetinnaMista();
+                    vysledek = kalkulacka.VratAktualniVysledek();
+                    textBox1.Text = vysledek.ToString(CultureInfo.InvariantCulture);
+                    label1.Text = $"= {vysledek}";
+
+                }
+            }
+            preskakujiRovnaSe = true;
 
         }
         private void ProvedOperaci(string operace, double hodnota)

@@ -41,17 +41,19 @@
             textBox1 = new TextBox();
             buttonPlus = new Button();
             buttonMinus = new Button();
-            button13 = new Button();
-            button14 = new Button();
-            button15 = new Button();
+            buttonMultiply = new Button();
+            buttonDivide = new Button();
+            buttonEquals = new Button();
             buttonDel = new Button();
             label1 = new Label();
             label2 = new Label();
             buttonZmenHodnotu = new Button();
             buttonC = new Button();
             buttonRound = new Button();
-            button10 = new Button();
+            buttonPoint = new Button();
             checkBoxZaokruhliDve = new CheckBox();
+            buttonSave = new Button();
+            buttonLoad = new Button();
             SuspendLayout();
             // 
             // button1
@@ -160,6 +162,7 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(272, 23);
             textBox1.TabIndex = 10;
+            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // buttonPlus
             // 
@@ -181,35 +184,35 @@
             buttonMinus.UseVisualStyleBackColor = true;
             buttonMinus.Click += tlacitkoZnamenko;
             // 
-            // button13
+            // buttonMultiply
             // 
-            button13.Location = new Point(478, 264);
-            button13.Name = "button13";
-            button13.Size = new Size(75, 23);
-            button13.TabIndex = 13;
-            button13.Text = "*";
-            button13.UseVisualStyleBackColor = true;
-            button13.Click += tlacitkoZnamenko;
+            buttonMultiply.Location = new Point(478, 264);
+            buttonMultiply.Name = "buttonMultiply";
+            buttonMultiply.Size = new Size(75, 23);
+            buttonMultiply.TabIndex = 13;
+            buttonMultiply.Text = "*";
+            buttonMultiply.UseVisualStyleBackColor = true;
+            buttonMultiply.Click += tlacitkoZnamenko;
             // 
-            // button14
+            // buttonDivide
             // 
-            button14.Location = new Point(478, 305);
-            button14.Name = "button14";
-            button14.Size = new Size(75, 23);
-            button14.TabIndex = 14;
-            button14.Text = "/";
-            button14.UseVisualStyleBackColor = true;
-            button14.Click += tlacitkoZnamenko;
+            buttonDivide.Location = new Point(478, 305);
+            buttonDivide.Name = "buttonDivide";
+            buttonDivide.Size = new Size(75, 23);
+            buttonDivide.TabIndex = 14;
+            buttonDivide.Text = "/";
+            buttonDivide.UseVisualStyleBackColor = true;
+            buttonDivide.Click += tlacitkoZnamenko;
             // 
-            // button15
+            // buttonEquals
             // 
-            button15.Location = new Point(478, 346);
-            button15.Name = "button15";
-            button15.Size = new Size(75, 23);
-            button15.TabIndex = 15;
-            button15.Text = "=";
-            button15.UseVisualStyleBackColor = true;
-            button15.Click += RovnaSeClick;
+            buttonEquals.Location = new Point(478, 346);
+            buttonEquals.Name = "buttonEquals";
+            buttonEquals.Size = new Size(75, 23);
+            buttonEquals.TabIndex = 15;
+            buttonEquals.Text = "=";
+            buttonEquals.UseVisualStyleBackColor = true;
+            buttonEquals.Click += RovnaSeClick;
             // 
             // buttonDel
             // 
@@ -267,15 +270,15 @@
             buttonRound.UseVisualStyleBackColor = true;
             buttonRound.Click += buttonRoundClick;
             // 
-            // button10
+            // buttonPoint
             // 
-            button10.Location = new Point(364, 346);
-            button10.Name = "button10";
-            button10.Size = new Size(75, 23);
-            button10.TabIndex = 22;
-            button10.Text = ".";
-            button10.UseVisualStyleBackColor = true;
-            button10.Click += btnDecimal_Click;
+            buttonPoint.Location = new Point(364, 346);
+            buttonPoint.Name = "buttonPoint";
+            buttonPoint.Size = new Size(75, 23);
+            buttonPoint.TabIndex = 22;
+            buttonPoint.Text = ".";
+            buttonPoint.UseVisualStyleBackColor = true;
+            buttonPoint.Click += btnDecimal_Click;
             // 
             // checkBoxZaokruhliDve
             // 
@@ -287,22 +290,42 @@
             checkBoxZaokruhliDve.Text = "ROUND TWO";
             checkBoxZaokruhliDve.UseVisualStyleBackColor = true;
             // 
+            // buttonSave
+            // 
+            buttonSave.Location = new Point(167, 61);
+            buttonSave.Name = "buttonSave";
+            buttonSave.Size = new Size(75, 23);
+            buttonSave.TabIndex = 24;
+            buttonSave.Text = "Save";
+            buttonSave.UseVisualStyleBackColor = true;
+            // 
+            // buttonLoad
+            // 
+            buttonLoad.Location = new Point(265, 61);
+            buttonLoad.Name = "buttonLoad";
+            buttonLoad.Size = new Size(75, 23);
+            buttonLoad.TabIndex = 25;
+            buttonLoad.Text = "Load";
+            buttonLoad.UseVisualStyleBackColor = true;
+            // 
             // KalkulackaHH
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(buttonLoad);
+            Controls.Add(buttonSave);
             Controls.Add(checkBoxZaokruhliDve);
-            Controls.Add(button10);
+            Controls.Add(buttonPoint);
             Controls.Add(buttonRound);
             Controls.Add(buttonC);
             Controls.Add(buttonZmenHodnotu);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(buttonDel);
-            Controls.Add(button15);
-            Controls.Add(button14);
-            Controls.Add(button13);
+            Controls.Add(buttonEquals);
+            Controls.Add(buttonDivide);
+            Controls.Add(buttonMultiply);
             Controls.Add(buttonMinus);
             Controls.Add(buttonPlus);
             Controls.Add(textBox1);
@@ -337,16 +360,18 @@
         private TextBox textBox1;
         private Button buttonPlus;
         private Button buttonMinus;
-        private Button button13;
-        private Button button14;
-        private Button button15;
+        private Button buttonMultiply;
+        private Button buttonDivide;
+        private Button buttonEquals;
         private Button buttonDel;
         private Label label1;
         private Label label2;
         private Button buttonZmenHodnotu;
         private Button buttonC;
         private Button buttonRound;
-        private Button button10;
+        private Button buttonPoint;
         private CheckBox checkBoxZaokruhliDve;
+        private Button buttonSave;
+        private Button buttonLoad;
     }
 }
